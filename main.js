@@ -12,11 +12,11 @@ import { clearScreen } from "./helper/clearScreen.js";
 
 let pointsXYZ, normalXYZ, xmin, xmax, ymin, ymax;
 
-[pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getDonutPoints(20, 30, 1, 1);
+// [pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getDonutPoints(20, 30, 1, 1);
 
 // [pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getPlatePoints(2, 100);
 // [pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getCubePoints(2, 100);
-// [pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getTeapotPoints();
+[pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getTeapotPoints();
 
 let boardHeight = 100;
 let boardWidth = 100;
