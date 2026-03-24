@@ -1,3 +1,5 @@
+import {getLuminosity} from "./getLuminosity";
+
 let s1 = " .:-=+*#%@";
 let s2 =
     " `.-':_,^=;><+!rc*/z?sLTv)J7(|Fi{C}fI31tlu[neoZ5Yxjya]2ESwqkP6h9d4VpOGbUAKXHm8RD#$Bg0MNWQ%&@";
@@ -17,16 +19,8 @@ let s2luminosity = [
 let [lightdirectionx, lightdirectiony, lightdirectionz] = [0, 0, -1];
 
 export function getLuminosityChar(nx, ny, nz) {
-    let dotprod = -nz * lightdirectionz;
-    if (dotprod >= 0) {
-        // algo 1 using s
-        return s1[Math.ceil(dotprod * (s1.length - 1))];
-
-        // also 2 using s2
-        // return s2[bsCeil(s2luminosity, 0, s2.length - 1, dotprod)];
-    } else {
-        return s1[0];
-    }
+    let lum = getLuminosity(nx,ny,nz)
+        return s1[Math.ceil(lum * (s1.length - 1))];
 }
 
 function bsCeil(arr, left, right, target) {

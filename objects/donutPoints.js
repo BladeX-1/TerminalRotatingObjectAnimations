@@ -12,6 +12,7 @@ export function getDonutPoints(
     let dtheta = (2 * Math.PI) / outerAngleDivision;
     let dphi = (2 * Math.PI) / crossAngleDivision;
 
+    
     for (let phi = 0; phi < 2 * Math.PI; phi += dphi) {
         let xtemp = holeRadius + crossRadius + Math.cos(phi) * crossRadius;
         let ztemp = Math.sin(phi) * crossRadius;

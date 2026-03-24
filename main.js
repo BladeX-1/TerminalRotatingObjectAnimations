@@ -7,7 +7,7 @@ import { printBoard } from "./helper/printBoard.js";
 import { xrot, yrot, zrot } from "./helper/rotationMat.js";
 import { delay } from "./helper/delay.js";
 import { getCubePoints } from "./objects/cubePoints.js";
-import { getLuminosityChar } from "./helper/luminosity.js";
+import { getLuminosityChar } from "./helper/getLuminosityChar.js";
 import { clearScreen } from "./helper/clearScreen.js";
 
 let pointsXYZ, normalXYZ, xmin, xmax, ymin, ymax;
