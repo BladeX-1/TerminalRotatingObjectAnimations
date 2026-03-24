@@ -1,4 +1,4 @@
-import {getLuminosity} from "./getLuminosity";
+import {getLuminosity} from "./getLuminosity.js";
 
 let s1 = " .:-=+*#%@";
 let s2 =
