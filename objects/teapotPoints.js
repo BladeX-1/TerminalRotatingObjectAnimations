@@ -48,6 +48,17 @@ export function getTeapotPoints() {
             console.log("hello");
         }
     }
+    
+    for(let theta=0;theta<2*Math.PI;theta+=0.05){
+        for(let r=0;r<1.6;r+=0.05){
+            let x = r*Math.cos(theta);
+            let z = -r*Math.sin(theta);
+
+            pointsXYZ.push([x,0.1,z]);
+            normalXYZ.push([0,-1,0]);
+        }
+    }
+
 
     let [xmin, xmax, ymin, ymax] = [10000, -10000, 10000, -10000];
 
@@ -68,6 +79,8 @@ export function getTeapotPoints() {
             ymax = y;
         }
     }
+
+
     console.log(xmin, xmax, ymin, ymax);
     // process.exit();
     return [pointsXYZ, normalXYZ, [-3.5, 3.5, -3.5, 3.5]];
