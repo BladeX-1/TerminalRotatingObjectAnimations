@@ -9,6 +9,7 @@ import { delay } from "./helper/delay.js";
 import { getCubePoints } from "./objects/cubePoints.js";
 import { getLuminosity } from "./helper/getLuminosity.js";
 import { clearScreenCanvas } from "./helper/clearScreenCanvas.js";
+import { getTeapotPoints } from "./objects/teapotPoints2.js";
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -16,7 +17,7 @@ const ctx = canvas.getContext("2d");
 
 let pointsXYZ, normalXYZ, xmin, xmax, ymin, ymax;
 
-[pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getDonutPoints(20, 30, 1, 1);
+[pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getDonutPoints(280, 280, 1, 1);
 
 // [pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getCubePoints(2, 100);
 // [pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getTeapotPoints();

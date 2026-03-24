@@ -11,7 +11,7 @@ export function printBoardCanvas(board,ctx){
         for(let x=0;x<xlen;x++){
             let luminosity = Math.floor(board[y][x]*255)
             ctx.fillStyle = "rgb("+luminosity+' '+luminosity+' '+luminosity+")"
-            ctx.fillRect(Math.floor(y*ygrad),Math.floor(x*xgrad),3,3)
+            ctx.fillRect(Math.floor(y*ygrad),Math.floor(x*xgrad),8,8)
         }
         // console.log()
     }

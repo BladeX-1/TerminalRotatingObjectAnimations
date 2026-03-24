@@ -1,11 +1,9 @@
-import fs from "fs";
-
+import {datapoints} from "./teapot_bezier2 copy.js"
 export function getTeapotPoints() {
     let pointsXYZ = [];
     let normalXYZ = [];
 
-    let data = fs.readFileSync("objects/teapot_bezier2.tris", "utf8");
-    data = data.split("\n");
+    let data = datapoints.split("\n");
     let triangleCount = data[0];
     for (let i = 1; i < data.length - 1; i += 4) {
         let [x1, y1, z1] = data[i].split(" ");
@@ -55,7 +53,7 @@ export function getTeapotPoints() {
             let x = r*Math.cos(theta);
             let z = -r*Math.sin(theta);
 
-            pointsXYZ.push([x,0.1,z]);
+            pointsXYZ.push([x,0.05,z]);
             normalXYZ.push([0,-1,0]);
         }
     }
