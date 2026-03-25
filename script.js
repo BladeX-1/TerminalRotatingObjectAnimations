@@ -17,7 +17,7 @@ const ctx = canvas.getContext("2d");
 
 let pointsXYZ, normalXYZ, xmin, xmax, ymin, ymax;
 
-[pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getDonutPoints(280, 280, 1, 1);
+[pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getDonutPoints(530, 530, 1, 1);
 
 // [pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getCubePoints(2, 100);
 // [pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]] = getTeapotPoints();
@@ -25,8 +25,16 @@ let pointsXYZ, normalXYZ, xmin, xmax, ymin, ymax;
 let boardHeight = 100;
 let boardWidth = 100;
 
-while(true)
-{
+let a = 50;
+let b = 100;
+function updateAB(ev) {
+    a = (ev.clientX - 1920 / 2)/10;
+    b = (ev.clientY - 1080 / 2)/10;
+}
+
+window.addEventListener('mousemove', updateAB)
+
+while (true) {
 
     for (let theta = 0; theta < Math.PI * 2; theta += 0.02) {
         let [board, zbuffer] = getEmptyBoard(boardHeight, boardWidth);
@@ -34,26 +42,28 @@ while(true)
             let [x, y, z] = pointsXYZ[i];
             [x, y, z] = xrot(x, y, z, theta);
             [x, y, z] = yrot(x, y, z, 2 * theta);
-            
+
+            let frac = (z + a) / (z + b)
+            x *= frac
+            y *= frac
+
+
             let [nx, ny, nz] = normalXYZ[i];
             [nx, ny, nz] = xrot(nx, ny, nz, theta);
             [nx, ny, nz] = yrot(nx, ny, nz, 2 * theta);
-            
+
             let xi = linearMapping(xmin - 0.1, 0, xmax + 0.1, boardWidth - 1, x);
             let yi = linearMapping(ymin - 0.1, 0, ymax + 0.1, boardHeight - 1, y);
-            try {
+            if (0<=yi && yi < board.length && 0<=xi && xi < board[0].length) {
                 if (zbuffer[yi][xi] == null || zbuffer[yi][xi] < z) {
                     board[yi][xi] = getLuminosity(nx, ny, nz);
                     zbuffer[yi][xi] = z;
                 }
-            } catch (TypeError) {
-                console.log(zbuffer, yi, xi, x, y);
-                throw TypeError;
             }
         }
         clearScreenCanvas(ctx);
-        printBoardCanvas(board,ctx);
-        await delay(20);
+        printBoardCanvas(board, ctx);
+        await delay(10);
     }
 
 }
