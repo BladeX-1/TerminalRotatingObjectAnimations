@@ -99,7 +99,7 @@ export function getTeapotPoints() {
     }
 
 
-    console.log(xmin, xmax, ymin, ymax);
+    // console.log(xmin, xmax, ymin, ymax);
     return [pointsXYZ, normalXYZ, [-3.5, 3.5, -3.5, 3.5]];
     return [pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]];
 }
