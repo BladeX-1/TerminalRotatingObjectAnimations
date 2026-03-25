@@ -5,6 +5,11 @@ export function getTeapotPoints() {
 
     let data = datapoints.split("\n");
     let triangleCount = data[0];
+
+    let xsum = 0;
+    let ysum = 0;
+    let zsum = 0;
+
     for (let i = 1; i < data.length - 1; i += 4) {
         let [x1, y1, z1] = data[i].split(" ");
         let [x2, y2, z2] = data[i + 1].split(" ");
@@ -34,6 +39,9 @@ export function getTeapotPoints() {
             (x2 - x1) * (y3 - y1) - (y2 - y1) * (x3 - x1),
         ];
 
+        xsum+=x;
+        ysum+=y;
+        zsum+=z;
         pointsXYZ.push([x, y, z]);
 
         let normalLength = Math.sqrt(nx * nx + ny * ny + nz * nz);
@@ -43,19 +51,30 @@ export function getTeapotPoints() {
             nz / normalLength,
         ]);
         if (Number.isNaN(x)) {
-            console.log("hello");
+            console.log("got NaN", i, x1, y1, z1, x2, y2, z2, x3, y3, z3);
         }
     }
     
     // add base of teapot
-    for(let theta=0;theta<2*Math.PI;theta+=0.05){
-        for(let r=0;r<1.6;r+=0.05){
+    for(let theta=0;theta<2*Math.PI;theta+=0.03){
+        for(let r=0;r<1.6;r+=0.03){
             let x = r*Math.cos(theta);
             let z = -r*Math.sin(theta);
+            let y = 0.05
+            xsum+=x;
+            ysum+=y;
+            zsum+=z;
 
-            pointsXYZ.push([x,0.05,z]);
+            pointsXYZ.push([x,y,z]);
             normalXYZ.push([0,-1,0]);
         }
+    }
+    
+    // center the pot
+    let length = pointsXYZ.length
+    for(let i=0;i<pointsXYZ.length;i++){
+        let [x,y,z] = pointsXYZ[i];
+        pointsXYZ[i] = [x-xsum/length,y-ysum/length,z-zsum/length];
     }
 
 
@@ -81,7 +100,6 @@ export function getTeapotPoints() {
 
 
     console.log(xmin, xmax, ymin, ymax);
-    // process.exit();
     return [pointsXYZ, normalXYZ, [-3.5, 3.5, -3.5, 3.5]];
     return [pointsXYZ, normalXYZ, [xmin, xmax, ymin, ymax]];
 }
